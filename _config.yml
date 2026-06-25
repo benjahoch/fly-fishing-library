@@ -1,0 +1,51 @@
+title: Fly Fishing Library
+description: A personal knowledge base for fly fishing — species, techniques, hatches, gear, and regional waters.
+author: Ben
+baseurl: "/fly-fishing-library"
+url: "https://yourusername.github.io"
+
+theme: null
+plugins:
+  - jekyll-relative-links
+  - jekyll-seo-tag
+
+relative_links:
+  enabled: true
+  collections: true
+
+markdown: kramdown
+highlighter: rouge
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+exclude:
+  - README-SETUP.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+collections:
+  species:
+    output: true
+    permalink: /species/:name/
+  techniques:
+    output: true
+    permalink: /techniques/:name/
+  hatches:
+    output: true
+    permalink: /hatches/:name/
+  regions:
+    output: true
+    permalink: /regions/:name/
+  gear:
+    output: true
+    permalink: /gear/:name/

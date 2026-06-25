@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Source+Sans+3:wght@400;500;600&family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  {% seo %}
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="{{ '/' | relative_url }}" class="site-title">🎣 Fly Fishing Library</a>
+    <span class="site-tagline">Personal field notes & knowledge base</span>
+  </header>
+
+  <div class="layout">
+    <nav class="sidebar">
+      <div class="nav-section">
+        <a href="{{ '/' | relative_url }}" class="nav-home {% if page.url == '/' %}active{% endif %}">Index</a>
+      </div>
+
+      <div class="nav-section">
+        <h3>Species</h3>
+        <ul>
+          {% assign species_pages = site.species | sort: 'title' %}
+          {% for item in species_pages %}
+            <li><a href="{{ item.url | relative_url }}" {% if page.url == item.url %}class="active"{% endif %}>{{ item.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="nav-section">
+        <h3>Techniques</h3>
+        <ul>
+          {% assign technique_pages = site.techniques | sort: 'title' %}
+          {% for item in technique_pages %}
+            <li><a href="{{ item.url | relative_url }}" {% if page.url == item.url %}class="active"{% endif %}>{{ item.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="nav-section">
+        <h3>Hatches</h3>
+        <ul>
+          {% assign hatch_pages = site.hatches | sort: 'title' %}
+          {% for item in hatch_pages %}
+            <li><a href="{{ item.url | relative_url }}" {% if page.url == item.url %}class="active"{% endif %}>{{ item.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="nav-section">
+        <h3>Regions</h3>
+        <ul>
+          {% assign region_pages = site.regions | sort: 'title' %}
+          {% for item in region_pages %}
+            <li><a href="{{ item.url | relative_url }}" {% if page.url == item.url %}class="active"{% endif %}>{{ item.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="nav-section">
+        <h3>Gear</h3>
+        <ul>
+          {% assign gear_pages = site.gear | sort: 'title' %}
+          {% for item in gear_pages %}
+            <li><a href="{{ item.url | relative_url }}" {% if page.url == item.url %}class="active"{% endif %}>{{ item.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </nav>
+
+    <main class="content">
+      {% if page.title and page.url != '/' %}
+        <div class="page-header">
+          <span class="page-category">{{ page.category }}</span>
+          <h1>{{ page.title }}</h1>
+          {% if page.description %}<p class="page-description">{{ page.description }}</p>{% endif %}
+          {% if page.last_updated %}<p class="last-updated">Last updated: {{ page.last_updated }}</p>{% endif %}
+        </div>
+      {% endif %}
+
+      <div class="prose">
+        {{ content }}
+      </div>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>{{ site.title }} · Maintained with Claude</p>
+  </footer>
+
+</body>
+</html>
